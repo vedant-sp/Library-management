@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>KJSIEIT COMPS LIBRARY</title>
+    <link rel="icon" type="image/png" href="{% static 'images/circle.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/jash.css' %}">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- somaiya logo top -->
+    <img src="{% static 'images/logo.jpeg' %}" width="100%">
+    <nav class="navbar">
+        <!-- dropdown button -->
+        <div class="dropdown">
+            <button class="btn btn-outline-primary my-2 my-sm-0"><i class="fa fa-bars" aria-hidden="true"></i></button>
+            <div class="dropdown-content">
+                <a href="ongoing"><i class="fa fa-clock-o" aria-hidden="true"></i> Ongoing</a>
+                <a href="history"><i class="fa fa-history" aria-hidden="true"></i> History</a>
+            </div>
+        </div>
+
+        <!-- double button -->
+        <div class="btn-group">
+            <a href="index">
+                <button type="button" class="btn btn-primary">Books</button></a>
+            <a href="files">
+                <button type="button" class="btn btn-outline-primary">Files</button></a>
+        </div>
+        <!-- search -->
+        <form class="form-inline" style="margin-top: 10px;" method="GET" action="search_book">
+            <input class="form-control" type="search" name="search" placeholder="Search in Library" aria-label="Search">
+            <button id="search" class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!-- log out -->
+        <span><b>Hello, {{request.user}}</b></span>
+        <a href="logout">
+            <button type="button" class="btn btn-outline-primary">LOG OUT</button></a>
+    </nav>
+    <!-- table -->
+    <table class="table" id="books">
+        <thead>
+            <tr>
+                <th scope="col">Book ID</th>
+                <th scope="col" style="width: 50%;">Book Name</th>
+                <th scope="col" style="width: 25%;">Author</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <th scope="row">
+                    <!--input type=""  disabled value={{book.book_id}} name="book_id"-->{{book.id}}</th>
+                <td><i aria-hidden="true"><img src="{% static 'images/book.png' %}" alt="" style="height: 10%; width: 5%;"></i> {{book.name}}</td>
+                <td>{{book.author}}</td>
+                <form method="GET" action="issue">
+                    <input type="hidden" name="book_id" value={{book.id}}>
+                    <td><button type="submit" class="btn btn-outline-info text-centre" onclick="myfun()">ISSUE BOOK</button></td>
+                </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        function myfun() {
+            var r = confirm("Are you sure you want to issue the book")
+            if (r) {
+                window.alert("The book is Issued");
+                window.location.href = "index";
+            }
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>

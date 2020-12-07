@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>KJSIEIT COMPS Library</title>
+    <link rel="icon" type="image/png" href="{% static 'images/circle.png' %}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jash.css' %}">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <img src="{% static 'images/logo.jpeg' %}" width="100%">
+    <nav class="navbar">
+        <div class="dropdown" style="margin-top: 10px;">
+            <!-- back button -->
+            <section>
+                <a class="link link--arrowed" href="index">
+                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+						<g fill="none" stroke="#2175FF" stroke-width="1.5" stroke-linejoin="round" stroke-miterlimit="10">
+							<circle class="arrow-icon--circle" cx="16" cy="16" r="15.12"></circle>
+							<path class="arrow-icon--arrow" d="M16.14 9.93L22.21 16l-6.07 6.07M8.23 16h13.98"></path>
+						</g>
+					</svg></a>
+            </section>
+        </div>
+        <div class="navcent">
+            <i class="fa fa-history" aria-hidden="true"><span style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;"> HISTORY</span></i>
+        </div>
+        <a href="logout">
+            <button type="button" class="btn btn-outline-primary">LOG OUT</button>
+        </a>
+    </nav>
+    <!-- book table -->
+    <div class="pip">
+        <p style="text-align: center;">BOOK</p>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 15%;">No.</th>
+                <th scope="col" style="width: 35%;">Book Name</th>
+                <th scope="col" style="width: 10%;">Author</th>
+                <th scope="col" style="width: 10%;">Date Issued</th>
+                <th scope="col" style="width: 10%;">Returned Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td scope="row"> {{book.id}} </td>
+                <td><i aria-hidden="true"><img src="{% static 'images/book.png' %}" style="width: 5%;height: 10%;"></i> {{book.name}}</td>
+                <td><i class="fa fa-pencil" aria-hidden="true"></i> {{book.author}}</td>
+                <td><i class="fa fa-calendar-check-o" aria-hidden="true">{{book.issue_date}}</td>
+				<td><i class="fa fa-calendar-times-o" aria-hidden="true"> {{book.return_date}}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<br><br>
+	<!-- files table -->
+	<div class="pip">
+        <p style="text-align: center;">FILE</p>
+    </div>
+	<table class="table" id="files" style="overflow-x: hidden;">
+		<thead>
+			<tr>
+        		<th scope="col" style="width:  4%;">No.</th>
+				<th scope="col" style="width: 25%;">File Name</th>
+        		<th scope="col" style="width: 25%;"><i class="fa fa-pencil" aria-hidden="true"></i>Team</th>
+                    <th scope="col" style="width: 12%;">Mentor</th>
+                    <th scope="col" style="width: 16%;"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Issue Date</th>
+                    <th scope="col" style="width: 16%;"><i class="fa fa-calendar-times-o" aria-hidden="true"></i>Return Date</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                <tr>
+                    <td scope="row">{{file.id}}</td>
+                    <td><i aria-hidden="true"><img src="{% static 'images/file2.jpg' %}" alt="file" style="height: 4%; width: 5%;"></i> {{file.file.title}}</td>
+                    <td>{{file.file.student1}}, {{file.file.student2}}, {{file.file.student3}}</td>
+                    <td>{{file.file.guide}}</td>
+                    <td>{{file.issue_date}}</td>
+                    <td>{{file.return_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
