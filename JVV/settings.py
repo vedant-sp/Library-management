@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'library',
         'ENGINE': 'django.db.backends.mysql',
         'USER': 'root',
-        'PASSWORD': 'vedant123',
+        'PASSWORD': '*********',
         'HOST': 'localhost',
         'PORT': '3306'
     }
@@ -132,7 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 #Email Settings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'vedantp.testemail@gmail.com'
-EMAIL_HOST_PASSWORD = 'Vedanttest@69'
+EMAIL_HOST_USER = **********
+EMAIL_HOST_PASSWORD = **********
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
